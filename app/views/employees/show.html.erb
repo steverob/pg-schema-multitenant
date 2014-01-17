@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @employee.name %>
+</p>
+
+<p>
+  <strong>Eid:</strong>
+  <%= @employee.eid %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @employee.department %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @employee.title %>
+</p>
+
+<h4>More Details</h4>
+<% unless @employee.employee_detail.nil? %>
+  <% puts "test" %>
+  <% puts @employee.employee_detail.details.inspect %>
+  <% @metadata.each do |field| %>
+    <p>
+      <strong><%= field.human_name %></strong>
+      <%= @employee.employee_detail.details[field.field_name] %>
+    </p>
+  <% end %>
+<% end %>        
+
+<%= link_to 'Edit', edit_employee_path(@employee) %> |
+<%= link_to 'Back', employees_path %>

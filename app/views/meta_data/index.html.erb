@@ -1,0 +1,32 @@
+<h1>Listing meta_data</h1>
+
+<table border=1>
+  <thead>
+    <tr>
+      <th>Table name</th>
+      <th>Field name</th>
+      <th>Account</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @meta_data.each do |meta_datum| %>
+      <tr>
+        <td><%= meta_datum.table_name %></td>
+        <td><%= meta_datum.field_name %></td>
+        <td><%= meta_datum.account_id %></td>
+        <td><%= link_to 'Show', meta_datum %></td>
+        <td><%= link_to 'Edit', edit_meta_datum_path(meta_datum) %></td>
+        <td><%= link_to 'Destroy', meta_datum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Meta datum', new_meta_datum_path %>
+<%= link_to 'Employees', employees_path %>

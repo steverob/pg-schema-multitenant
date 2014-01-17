@@ -1,0 +1,36 @@
+<h1> ERP for <%= @current_account.name %></h1>
+
+<h2>Listing employees</h2>
+
+<table border=1>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Eid</th>
+      <th>Department</th>
+      <th>Title</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @employees.each do |employee| %>
+      <tr>
+        <td><%= employee.name %></td>
+        <td><%= employee.eid %></td>
+        <td><%= employee.department %></td>
+        <td><%= employee.title %></td>
+        <td><%= link_to 'Show', employee %></td>
+        <td><%= link_to 'Edit', edit_employee_path(employee) %></td>
+        <td><%= link_to 'Destroy', employee, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Employee', new_employee_path %>
+<%= link_to 'Edit Employee Fields', meta_data_path %>

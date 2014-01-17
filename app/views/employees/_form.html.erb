@@ -1,0 +1,45 @@
+<%= form_for(@employee) do |f| %>
+  <% if @employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% @employee.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :eid %><br>
+    <%= f.text_field :eid %>
+  </div>
+  <div class="field">
+    <%= f.label :department %><br>
+    <%= f.text_field :department %>
+  </div>
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+
+  <%= f.fields_for :employee_detail do |fields| %>
+    <%= fields.fields_for :details, @employee.employee_detail.details do |d| %>
+      <% @metadata.each do |field| %>
+        <div class="field">
+          <%= d.label field.human_name %><br>
+          <%= d.text_field field.field_name, :value=> (@employee.employee_detail.details[field.field_name] unless @employee.employee_detail.details.nil? )%>
+        </div>  
+      <% end %>
+    <% end %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
